@@ -26,6 +26,18 @@ type B struct {
 
 // UnmarshalJSON unmarshals this object from a JSON structure
 func (m *B) UnmarshalJSON(raw []byte) error {
+	var data struct {
+		F3 *string `json:"f3"`
+
+		F4 []string `json:"f4"`
+	}
+	if err := swag.ReadJSON(raw, &data); err != nil {
+		return err
+	}
+
+	m.F3 = data.F3
+
+	m.F4 = data.F4
 
 	var aO0 A
 	if err := swag.ReadJSON(raw, &aO0); err != nil {
@@ -39,6 +51,21 @@ func (m *B) UnmarshalJSON(raw []byte) error {
 // MarshalJSON marshals this object to a JSON structure
 func (m B) MarshalJSON() ([]byte, error) {
 	var _parts [][]byte
+	var data struct {
+		F3 *string `json:"f3"`
+
+		F4 []string `json:"f4"`
+	}
+
+	data.F3 = m.F3
+
+	data.F4 = m.F4
+
+	jsonData, err := swag.WriteJSON(data)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, jsonData)
 
 	aO0, err := swag.WriteJSON(m.A)
 	if err != nil {
