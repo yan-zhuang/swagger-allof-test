@@ -14,16 +14,19 @@ See the [diff](https://github.com/yan-zhuang/swagger-allof-test/commit/9cc8549d5
 
 # Update
 The issue was closed for the geerator works well when specify `allof` correctly.
-(See swagger.yaml file in src/correct folder)
+(**See swagger.yaml file in *src/correct* folder**)
 
 See https://github.com/go-swagger/go-swagger/issues/1042
 
 # Version for testing
+```sh
 $ swagger version
 version: 0.15.0
 commit: 84da4f998602ef20ebd60a576756996162a1ca66
+```
 
 # Diff between incorrect and correct specs
+```sh
 diff --git a/src/incorrect/swagger.yaml b/src/correct/swagger.yaml
 index 4983902..4aa4f7a 100644
 --- a/src/incorrect/swagger.yaml
@@ -56,9 +59,10 @@ index 4983902..4aa4f7a 100644
 +            type: array
 +            items:
 +              type: string
-
+```
 
 # Diff between generated files
+```sh
 diff --git a/src/incorrect/models/b.go b/src/correct/models/b.go
 index a79e3db..b59ed0a 100644
 --- a/src/incorrect/models/b.go
@@ -114,3 +118,4 @@ index a79e3db..b59ed0a 100644
  	return swag.ConcatJSON(_parts...), nil
  }
  
+```
