@@ -1,0 +1,41 @@
+swagger: "2.0"
+info:
+  title: test
+  description: |-
+    test
+  version: "0.0"
+  
+basePath: "/test"
+
+paths:
+  "/allof":
+    get:
+      responses:
+        '200':
+          description: test
+          schema:
+            "$ref": "#/definitions/B"
+  
+definitions:
+  A:
+    type: object
+    properties:
+      f1:
+        type: string
+      f2: 
+        type: string
+
+  B:
+    type: object
+    allOf:
+      - "$ref": "#/definitions/A"
+    required:
+      - f3
+      - f4
+    properties:
+      f3: 
+        type: string
+      f4: 
+        type: array
+        items:
+          type: string
